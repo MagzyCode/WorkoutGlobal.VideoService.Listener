@@ -1,15 +1,38 @@
-namespace WorkoutGlobal.VideoService.Listener
+using MassTransit;
+using WorkoutGlobal.VideoService.Listener.Consumers;
+using WorkoutGlobal.VideoService.Listener.Contracts;
+using Refit;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddMassTransit(options =>
 {
-    public class Program
+    options.AddConsumer<UpdateUserConsumer>();
+    options.AddConsumer<DeleteUserConsumer>();
+
+    options.UsingRabbitMq((cxt, cfg) =>
     {
-        public static void Main(string[] args)
+        cfg.Host(builder.Configuration["RabbitMqHost"]);
+
+        cfg.ReceiveEndpoint(builder.Configuration["Exchanges:UpdateUser"], endpoint =>
         {
-            var builder = WebApplication.CreateBuilder(args);
-            var app = builder.Build();
+            endpoint.ConfigureConsumer<UpdateUserConsumer>(cxt);
+        });
 
-            app.MapGet("/", () => "Hello World!");
+        cfg.ReceiveEndpoint(builder.Configuration["Exchanges:DeleteUser"], endpoint =>
+        {
+            endpoint.ConfigureConsumer<DeleteUserConsumer>(cxt);
+        });
+    });
+});
+builder.Services.AddMassTransitHostedService();
 
-            app.Run();
-        }
-    }
-}
+builder.Services.AddRefitClient<IVideoController>()
+    .ConfigureHttpClient(configure =>
+    {
+        configure.BaseAddress = new(builder.Configuration["ConsumerUrl"]);
+    });
+
+var app = builder.Build();
+
+app.Run();
