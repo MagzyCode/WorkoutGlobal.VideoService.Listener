@@ -1,15 +1,12 @@
-namespace WorkoutGlobal.VideoService.Listener
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-            var app = builder.Build();
+using WorkoutGlobal.VideoService.Listener.Extensions.ServiceExtensions;
 
-            app.MapGet("/", () => "Hello World!");
+var builder = WebApplication.CreateBuilder(args);
 
-            app.Run();
-        }
-    }
-}
+var busType = Enum.Parse<WorkoutGlobal.VideoService.Listener.Enums.Bus>(builder.Configuration["MassTransitSettings:Bus"]);
+
+builder.Services.ConfigureMassTransit(builder.Configuration, busType);
+builder.Services.ConfigureRefitServices(builder.Configuration);
+
+var app = builder.Build();
+
+app.Run();

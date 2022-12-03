@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutGlobal.VideoService.Listener", "WorkoutGlobal.VideoService.Listener\WorkoutGlobal.VideoService.Listener.csproj", "{B83CC2EE-B0C2-4365-8AE7-B553B909CFDC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkoutGlobal.Shared.Messages", "..\..\Shared messages\WorkoutGlobal.Shared\WorkoutGlobal.Shared.Messages\WorkoutGlobal.Shared.Messages.csproj", "{9EF49DF1-ACFD-4D4F-A31C-E7EA9A3B3CEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B83CC2EE-B0C2-4365-8AE7-B553B909CFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B83CC2EE-B0C2-4365-8AE7-B553B909CFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B83CC2EE-B0C2-4365-8AE7-B553B909CFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EF49DF1-ACFD-4D4F-A31C-E7EA9A3B3CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF49DF1-ACFD-4D4F-A31C-E7EA9A3B3CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EF49DF1-ACFD-4D4F-A31C-E7EA9A3B3CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF49DF1-ACFD-4D4F-A31C-E7EA9A3B3CEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
