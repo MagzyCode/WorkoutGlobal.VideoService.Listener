@@ -11,7 +11,7 @@ namespace WorkoutGlobal.VideoService.Listener.Consumers
         public UpdateUserConsumer(IConfiguration configuration)
         {
             Configuration = configuration;
-            VideoEndpoint = RestService.For<IVideoController>(Configuration["ConsumerUrl"]);
+            VideoEndpoint = RestService.For<IVideoController>(Configuration["MassTransitSettings:ConsumerUrl"]);
         }
 
         public IConfiguration Configuration { get; }
